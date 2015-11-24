@@ -4,12 +4,12 @@ one:
   name: MyString
   party_id: 
   betfaircode: MyString
-  primaryodds: MyString
-  presidencyodds: MyString
+  primaryodds: 1.5
+  presidencyodds: 1.5
 
 two:
   name: MyString
   party_id: 
   betfaircode: MyString
-  primaryodds: MyString
-  presidencyodds: MyString
+  primaryodds: 1.5
+  presidencyodds: 1.5

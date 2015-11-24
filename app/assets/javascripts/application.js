@@ -19,7 +19,8 @@
 
 //=require model.js
 //=require collection.js
-//=require views.js
+//=require viewsp1.js
+//=require viewsp2.js
 //=require router.js
 //=require welcome.js
 //= require_self

@@ -3,9 +3,9 @@
 one:
   name: MyString
   betfaircode: MyString
-  odds: MyString
+  odds: 1.5
 
 two:
   name: MyString
   betfaircode: MyString
-  odds: MyString
+  odds: 1.5
