@@ -19,8 +19,8 @@ Party.destroy_all
 
 
 
-party1 = Party.create(name: "Democrats", odds: 1.74)
-party2 = Party.create(name: "Republicans", odds: 2.34)
+party1 = Party.create(name: "Democrats", odds: 1.7, betfaircode: 1171581)
+party2 = Party.create(name: "Republicans", odds: 2.4, betfaircode: 1171580)
 
 
 candi1 = Candidate.create(name: "Hillary Clinton", party_id: party1.id, presidencyodds: 1.85, primaryodds: 1.12, betfaircode: 1171623)
