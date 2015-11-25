@@ -79,6 +79,15 @@ td {
 	border-bottom: 1px solid gray;
 }
 
+#candidate-submit {
+	color: black;
+	position: relative;
+	font-size: 2em;
+	margin: 20px;
+	padding: 10px;
+
+}
+
 svg {
 	background: rgba(225,225,225,0.65);
 	margin-top: 20px;
