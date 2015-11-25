@@ -21,6 +21,7 @@
 //=require collection.js
 //=require viewsp1.js
 //=require viewsp2.js
+//=require test.js
 //=require router.js
 //=require welcome.js
 //= require_self
