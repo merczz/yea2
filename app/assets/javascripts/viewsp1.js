@@ -7,7 +7,13 @@ app.PartiesListView = Backbone.View.extend({
 	el: '.page',
 
 	events: {
-		// "click #candidate-submit",
+		"click #candidate-submit": "showCandidates"
+	},
+
+	showCandidates: function() {
+		console.log("click search candidates");
+		var canview = new app.CanListView();
+		canview.render();
 	},
 
 	render: function() {

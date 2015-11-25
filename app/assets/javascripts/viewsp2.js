@@ -4,43 +4,54 @@
 var app = app || {};
 
 app.CanListView = Backbone.View.extend({
-	el: '.test',
+	el: '.page',
 
 	render: function() {
 		console.log("start render view2");
-		// var partieslist = new app.PartiesList();
-		// console.log("partylist: ", partieslist);
-		// var that = this;
-		// partieslist.fetch({
-		// 	success: function(partieslist){
-		// 		console.log("partieslist fetch success");
-		// 		// console.log("partieslist: ", partieslist.models);
-		// 		//clean up data
-		// 		// var dataArray = partieslist.pluck("odds");
-		// 		// var nameArray = partieslist.pluck("name");
-		// 		var dataArray = [];
-		// 		var nameArray = [];
-		// 		var oddsArray = [];
-		// 		partieslist.each(function(item){
-		// 			dataArray.push((1/item.get("odds")*100).toFixed(0));
-		// 			nameArray.push(item.get("name"));
-		// 			oddsArray.push(item.get("odds").toFixed(2));
-		// 		});
-		// 		console.log("dataArray:  ", dataArray);
-		// 		console.log("nameArray:  ", nameArray);
+		d3.select(".page").html("");
+		d3.select(".chart").html("");
+		var candislist = new app.CandidatesList();
+		var that = this;
+		candislist.fetch({
+			success: function(partieslist){
+				console.log("candislist fetch success");
+				console.log("candislist: ", candislist.models);
+				//clean up data
+				var primedataArray = [];
+				var presidataArray =[]
+				var nameArray = [];
+				var primeoddsArray = [];
+				var presioddsArray =[];
+				var partyArray =[];
+				     // t.string   "name"
+   					 // t.integer  "party_id"
+   					 // t.integer  "betfaircode"
+   					 // t.float    "primaryodds"
+   					 // t.float    "presidencyodds"
+				candislist.each(function(item){
+					nameArray.push(item.get("name"));
+					primedataArray.push((1/item.get("primaryodds")*100).toFixed(0));
+					primeoddsArray.push(item.get("primaryodds").toFixed(2));
+					presidataArray.push((1/item.get("presidencyodds")*100).toFixed(0));
+					presioddsArray.push(item.get("presidencyodds").toFixed(2));
+					partyArray.push(item.get("party"))
+					
+				});
+				console.log("partyArray:  ", partyArray);
+				// console.log("nameArray:  ", nameArray);
 
 				////////////////////////////////////
 				//create party list using backbone//
 				////////////////////////////////////
-				var content = "<h2>Probability to Win</h2><table class='party-table'>";
-				for (var i=0; i<dataArray.length; i++){
-					content = content + "<tr><td>" + nameArray[i] + 
-						"</td><td> " + dataArray[i] + "%</td><td>" + 
-						" Price: $" + oddsArray[i] +"</td></tr>";
-				};
+				// var content = "<h2>Probability to Win</h2><table class='party-table'>";
+				// for (var i=0; i<dataArray.length; i++){
+				// 	content = content + "<tr><td>" + nameArray[i] + 
+				// 		"</td><td> " + dataArray[i] + "%</td><td>" + 
+				// 		" Price: $" + oddsArray[i] +"</td></tr>";
+				// };
 					
-				content = content + "</table>";
-				that.$el.html(content);
+				// content = content + "</table>";
+				// that.$el.html(content);
 				
 				////////////////////////////////////
 				//create party list using d3.js   //
