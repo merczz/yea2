@@ -6,6 +6,10 @@ var app = app || {};
 app.PartiesListView = Backbone.View.extend({
 	el: '.page',
 
+	events: {
+		// "click #candidate-submit",
+	},
+
 	render: function() {
 		console.log("start render view1");
 		var partieslist = new app.PartiesList();
@@ -40,7 +44,7 @@ app.PartiesListView = Backbone.View.extend({
 				};
 					
 				content = content + "</table>";
-				
+				content = content + "<button id='candidate-submit'>Lookup Candidates</button>";
 				that.$el.html(content);
 				
 				////////////////////////////////////
@@ -82,6 +86,7 @@ app.PartiesListView = Backbone.View.extend({
 						.enter()
 							.append("rect")
 							.attr("height", 50)
+							.attr("class", function(d,i) {return "party-rect"+i;})
 							.attr("fill", function(d) {return color(d)})
 							.attr("y", function(d,i) {return i * 80})
 							.attr("x", 0)
