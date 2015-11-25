@@ -19,20 +19,20 @@ app.PartiesListView = Backbone.View.extend({
 				////////////////////////////////////
 				//create party list using backbone//
 				////////////////////////////////////
-				// var content = "<h3>Party Odds -BB</h3><table class='table striped'>";
-				// partieslist.each(function(item){
-				// 	content = content + "<tr><td>" + item.get("name") + 
-				// 		"</td><td> " + item.get("odds") + "</td></tr>";
-				// });
-				// content = content + "</table>";
-				// that.$el.html(content);
+				var content = "<h3>Party Odds -BB</h3><table class='table striped'>";
+				partieslist.each(function(item){
+					content = content + "<tr><td>" + item.get("name") + 
+						"</td><td> " + item.get("odds") + "</td></tr>";
+				});
+				content = content + "</table>";
+				that.$el.html(content);
 				
 				////////////////////////////////////
 				//create party list using d3.js   //
 				////////////////////////////////////
-				function tabulate(data)
+				// function tabulate(data)
 
-				d3.select('.page').(content);
+				// d3.select('.page').(content);
 
 				
 	
