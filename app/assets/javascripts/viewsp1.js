@@ -32,27 +32,24 @@ app.PartiesListView = Backbone.View.extend({
 				////////////////////////////////////
 
 				d3.select('.chart').text("chart goes here");
-				d3.select('.chart').html(""); //clear tag
-				console.log(JSON.parse(partieslist.pluck("odds")));
-				var dataS = [];
-				dataS = JSON.parse(partieslist.pluck("odds"));
-				console.log("typeof here: ", typeof dataS);
-
-				// function tabulate(data)
+				// d3.select('.chart').html(""); //clear tag
+				var dataArray = partieslist.pluck("odds");
+				var nameArray = partieslist.pluck("name");
+				// console.log(typeof nameArray);
+				// console.log(JSON.stringify(nameArray));
+				// var test = partieslist.map("name");
+				// console.log("map: ", test);
+				// console.log("typeof ", test);
 
 				// d3.select('.page').(content);
 
-				//change data type from string to int
-				// dataArray = dataS.map(function(x) {return parseFloat(x);});
-
-				// console.log("type of array: ", typeof dataArray[0]);
 
 				var width = 400;
 				var height = 400;
 
 				//scale
 				var widthScale = d3.scale.linear()
-								.domain([1,5])
+								.domain([1,d3.max(dataArray)])
 								.range([0, width]); //max width
 				// console.log("widthscale: ", widthScale);
 
@@ -63,7 +60,7 @@ app.PartiesListView = Backbone.View.extend({
 
 				// create axis
 				var axis = d3.svg.axis()
-							.ticks(0.5)
+							.ticks(1)
 							.scale(widthScale);
 				// console.log("axis: ", axis);
 
@@ -82,7 +79,12 @@ app.PartiesListView = Backbone.View.extend({
 								.attr("width", function(d){ return widthScale(d)})
 								.attr("height", 50)
 								.attr("fill", function(d) {return color(d)})
-								.attr("y", function(d,i) {return i * 100});
+								.attr("y", function(d,i) {return i * 100})
+
+				// var label = canvas.selectAll("text")
+							// .data(nameArray)
+							// .enter()
+								// .append("text");
 
 				canvas.append("g")
 					.attr("transform", "translate(0,400)")
