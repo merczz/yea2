@@ -38,7 +38,9 @@ app.PartiesListView = Backbone.View.extend({
 				dataS = JSON.parse(partieslist.pluck("odds"));
 				console.log("typeof here: ", typeof dataS);
 
-				
+				// function tabulate(data)
+
+				// d3.select('.page').(content);
 
 				//change data type from string to int
 				// dataArray = dataS.map(function(x) {return parseFloat(x);});
