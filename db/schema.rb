@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124113955) do
+ActiveRecord::Schema.define(version: 20151124231054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20151124113955) do
   create_table "candidates", force: :cascade do |t|
     t.string   "name"
     t.integer  "party_id"
-    t.string   "betfaircode"
+    t.integer  "betfaircode"
     t.float    "primaryodds"
     t.float    "presidencyodds"
     t.datetime "created_at",     null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20151124113955) do
 
   create_table "parties", force: :cascade do |t|
     t.string   "name"
-    t.string   "betfaircode"
+    t.integer  "betfaircode"
     t.float    "odds"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
