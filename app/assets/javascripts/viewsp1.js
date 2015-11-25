@@ -18,12 +18,12 @@ app.PartiesListView = Backbone.View.extend({
 
 	render: function() {
 		console.log("start render view1");
-		var partieslist = new app.PartiesList();
-		console.log("partylist: ", partieslist);
+		app.plist = new app.PartiesList();
+		console.log("partylist: ", app.plist);
 		var that = this;
-		partieslist.fetch({
-			success: function(partieslist){
-				console.log("partieslist fetch success");
+		app.plist.fetch({
+			success: function(){
+				console.log("plist fetch success");
 				// console.log("partieslist: ", partieslist.models);
 				//clean up data
 				// var dataArray = partieslist.pluck("odds");
@@ -31,7 +31,7 @@ app.PartiesListView = Backbone.View.extend({
 				var dataArray = [];
 				var nameArray = [];
 				var oddsArray = [];
-				partieslist.each(function(item){
+				app.plist.each(function(item){
 					dataArray.push((1/item.get("odds")*100).toFixed(0));
 					nameArray.push(item.get("name"));
 					oddsArray.push(item.get("odds").toFixed(2));
@@ -54,7 +54,7 @@ app.PartiesListView = Backbone.View.extend({
 				that.$el.html(content);
 				
 				////////////////////////////////////
-				//create party list using d3.js   //
+				//create party chart using d3.js  //
 				////////////////////////////////////
 
 				// d3.select('.chart').html(""); //clear tag
