@@ -72,22 +72,21 @@ app.CanListView = Backbone.View.extend({
 				console.log("demonamearray:  ",demonameArray);
 				console.log("demodataarray: ", demodataArray);
 				//chart
-				
-				// create axis shared element
-				var demoAxis = d3.svg.axis()
-							.ticks(2)
-							.scale(demoWidthScale);
 
 				//scale demo only
 				var demoWidthScale = d3.scale.linear()
 								.domain([0,110])
 								.range([0, width]); //max width
 
+				// create axis shared element
+				var demoAxis = d3.svg.axis()
+							.ticks(2)
+							.scale(demoWidthScale);
+
 				//color scale demo only
 				var demoColor = d3.scale.linear()
 							.domain([1,70])
 							.range(["firebrick","navy"]) ;
-
 
 				var demoCanvas = d3.select('.chart')
 						.append("svg")
@@ -118,7 +117,7 @@ app.CanListView = Backbone.View.extend({
 						.attr("class", "demo-name")
 						.text(function(d) {return d})
 						.attr("x", 5)
-						.attr("y", function(d,i) {return i * 80+30;})
+						.attr("y", function(d,i) {return i * 80+30})
 						.style("fill", "white")
 						;
 
@@ -140,7 +139,7 @@ app.CanListView = Backbone.View.extend({
 						.text(function(d) {return d+"%"})
 						.delay(1500)
 						;
-						
+
 				demoCanvas.append("g")
 					.attr("transform", "translate(0,140)")
 					.attr("class", "axis")
