@@ -8,129 +8,152 @@ app.CanListView = Backbone.View.extend({
 
 	render: function() {
 		console.log("start render view2");
-		d3.select(".page").html("");
-		d3.select(".chart").html("");
+	
 		var candislist = new app.CandidatesList();
 		var that = this;
 		candislist.fetch({
 			success: function(partieslist){
 				console.log("candislist fetch success");
 				console.log("candislist: ", candislist.models);
-				//clean up data
-				var primedataArray = [];
-				var presidataArray =[]
-				var nameArray = [];
-				var primeoddsArray = [];
-				var presioddsArray =[];
-				var partyArray =[];
-				     // t.string   "name"
-   					 // t.integer  "party_id"
-   					 // t.integer  "betfaircode"
-   					 // t.float    "primaryodds"
-   					 // t.float    "presidencyodds"
-				candislist.each(function(item){
-					nameArray.push(item.get("name"));
-					primedataArray.push((1/item.get("primaryodds")*100).toFixed(0));
-					primeoddsArray.push(item.get("primaryodds").toFixed(2));
-					presidataArray.push((1/item.get("presidencyodds")*100).toFixed(0));
-					presioddsArray.push(item.get("presidencyodds").toFixed(2));
-					partyArray.push(item.get("party"))
-					
-				});
-				console.log("partyArray:  ", partyArray);
-				// console.log("nameArray:  ", nameArray);
+				
+				var partyname = "";
+				var arrayid = "";
+				var candiname = "";
+				var primedata = 0;
+				var presidata = 0;
 
-				////////////////////////////////////
-				//create party list using backbone//
-				////////////////////////////////////
-				// var content = "<h2>Probability to Win</h2><table class='party-table'>";
-				// for (var i=0; i<dataArray.length; i++){
-				// 	content = content + "<tr><td>" + nameArray[i] + 
-				// 		"</td><td> " + dataArray[i] + "%</td><td>" + 
-				// 		" Price: $" + oddsArray[i] +"</td></tr>";
-				// };
-					
-				// content = content + "</table>";
-				// that.$el.html(content);
+				var demodataArray = [];  //demo chart
+				var demonameArray = [];  //demo chart
+				var repudataArray =[];   //repub chart
+				var repunameArray = [];  //repub chart
+				var presdataArray =[];	 //presi chart
+				var presnameArray = [];  //presi chart
+				var prespartyArray = []; //presi chart
+
+				candislist.each(function(item){
+					//get party name
+					arrayid = app.pidArray.indexOf(item.get("party_id"));
+					partyname = app.pnameArray[arrayid];
+					//get model data
+					candiname = item.get("name");
+					primedata = (1/item.get("primaryodds")*100).toFixed(0);
+					presidata = (1/item.get("presidencyodds")*100).toFixed(0)
+					//presi arrays
+					prespartyArray.push(partyname);
+					presnameArray.push(candiname);
+					presdataArray.push(presidata);
+					//primary data
+					if (partyname === "Democrats") {
+						demonameArray.push(candiname);
+						demodataArray.push(primedata);
+					} else {
+						repunameArray.push(candiname);
+						repudataArray.push(primedata);
+					};
+				});
 				
 				////////////////////////////////////
 				//create party list using d3.js   //
 				////////////////////////////////////
 
-				// // d3.select('.chart').html(""); //clear tag
-				// var width = 500;
-				// var height = 250;
-				// var domain = [0, 80];
+				//clear divs
+				d3.select(".page").html("");
+				d3.select(".chart").html("");
 
-				// //scale
-				// var widthScale = d3.scale.linear()
-				// 				.domain(domain)
-				// 				.range([0, width]); //max width
+				var width = 500; //shared var
+				var height = 250; //shared var
 
-				// //color scale
-				// var color = d3.scale.linear()
-				// 			.domain([d3.min(dataArray),d3.max(dataArray)])
-				// 			.range(["firebrick","navy"]) ;
+				///////////////////////
+				/// chart 1 demo primaries
+				//////////////////////
 
-				// // create axis
-				// var axis = d3.svg.axis()
-				// 			.ticks(2)
-				// 			.scale(widthScale)
-				// 			// .orient("bottom")
-				// 			;
-				// // console.log("axis: ", axis);
+				//heading		
+				d3.select(".chart").append("h2").text("Democratic Primaries");	
+				console.log("demonamearray:  ",demonameArray);
+				console.log("demodataarray: ", demodataArray);
+				//chart
+				
+				// create axis shared element
+				var demoAxis = d3.svg.axis()
+							.ticks(2)
+							.scale(demoWidthScale);
 
-				// var canvas = d3.select('.chart')
-				// 		.append("svg")
-				// 		.attr("width", width)
-				// 		.attr("height", height)
-				// 		.append("g")
-				// 		.attr("transform", "translate(25,40)");
+				//scale demo only
+				var demoWidthScale = d3.scale.linear()
+								.domain([0,110])
+								.range([0, width]); //max width
 
-				// var bars = canvas.selectAll("rect")
-				// 		.data(dataArray)
-				// 		.enter()
-				// 			.append("rect")
-				// 			.attr("height", 50)
-				// 			.attr("fill", function(d) {return color(d)})
-				// 			.attr("y", function(d,i) {return i * 80})
-				// 			.attr("x", 0)
-				// 			.attr("width",0)
-				// 			.transition()
-				// 				.attr("width", function(d){ return widthScale(d)})
-				// 				.duration(1000)
-				// 				.delay(500);
+				//color scale demo only
+				var demoColor = d3.scale.linear()
+							.domain([1,70])
+							.range(["firebrick","navy"]) ;
 
-				// var labels = canvas.selectAll("text.name")
-				// 		.data(nameArray)
-				// 		.enter()
-				// 		.append("text")
-				// 		.attr("class", "party-name")
-				// 		.text(function(d) {return d})
-				// 		.attr("x", 5)
-				// 		.attr("y", function(d,i) {return i * 80+30;})
-				// 		// .style("fill", "#fff")
-				// 		// .attr("text-anchor","middle")
-				// 		;
 
-				// var labelsVal = canvas.selectAll("text.value")
-				// 		.data(dataArray)
-				// 		.enter()
-				// 		.append("text")
-				// 		.attr("class", "party-value")
-				// 		.text("")
-				// 		.attr("x", function(d) {return widthScale(d)+5})
-				// 		.attr("y", function(d,i) {return i * 80+30;})
-				// 		// .style("fill", "dimgray")
-				// 		// .style("font-size", "16px")
-				// 		.transition()
-				// 		.text(function(d) {return d+"%"})
-				// 		.delay(1500)
-				// 		;
-				// canvas.append("g")
-				// 	.attr("transform", "translate(0,140)")
-				// 	.attr("class", "axis")
-				// 	.call(axis)
+				var demoCanvas = d3.select('.chart')
+						.append("svg")
+						.attr("class", "demo-svg")
+						.attr("width", width)
+						.attr("height", height)
+						.append("g")
+						.attr("transform", "translate(25,40)");
+
+				var demoBars = demoCanvas.selectAll("rect")
+						.data(demodataArray)
+						.enter()
+							.append("rect")
+							.attr("height", 50)
+							.attr("fill", function(d) {return demoColor(d)})
+							.attr("y", function(d,i) {return i * 80})
+							.attr("x", 0)
+							.attr("width",0)
+							.transition()
+								.attr("width", function(d){ return demoWidthScale(d)})
+								.duration(1000)
+								.delay(500);
+
+				var demoLabels = demoCanvas.selectAll("text.name")
+						.data(demonameArray)
+						.enter()
+						.append("text")
+						.attr("class", "demo-name")
+						.text(function(d) {return d})
+						.attr("x", 5)
+						.attr("y", function(d,i) {return i * 80+30;})
+						.style("fill", "white")
+						;
+
+				var demolabelsVal = demoCanvas.selectAll("text.value")
+						.data(demodataArray)
+						.enter()
+						.append("text")
+						.attr("class", "demo-value")
+						.text("")
+						.attr("x", function(d) {
+							if(d<40){
+								return demoWidthScale(d)+150;
+							} else {
+								return demoWidthScale(d)+5;
+							};
+						})
+						.attr("y", function(d,i) {return i * 80+30;})
+						.transition()
+						.text(function(d) {return d+"%"})
+						.delay(1500)
+						;
+				demoCanvas.append("g")
+					.attr("transform", "translate(0,140)")
+					.attr("class", "axis")
+					.call(demoAxis);
+
+				///////////////////////
+				/// chart 2 republican primaries
+				//////////////////////
+
+
+
+				///////////////////////
+				/// chart 3 presidency
+				//////////////////////
 
 
 			}

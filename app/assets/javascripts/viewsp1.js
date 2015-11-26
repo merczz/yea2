@@ -31,13 +31,18 @@ app.PartiesListView = Backbone.View.extend({
 				var dataArray = [];
 				var nameArray = [];
 				var oddsArray = [];
+				var pidArray = [];
 				app.plist.each(function(item){
 					dataArray.push((1/item.get("odds")*100).toFixed(0));
 					nameArray.push(item.get("name"));
 					oddsArray.push(item.get("odds").toFixed(2));
+					pidArray.push(item.get("id"));
 				});
 				console.log("dataArray:  ", dataArray);
 				console.log("nameArray:  ", nameArray);
+				console.log("pidArray:  ", pidArray);
+				app.pidArray = pidArray;
+				app.pnameArray = nameArray;
 
 				////////////////////////////////////
 				//create party list using backbone//
