@@ -30,30 +30,63 @@ app.CanListView = Backbone.View.extend({
 				var presnameArray = [];  //presi chart
 				var prespartyArray = []; //presi chart
 
+				var unrepudataArray =[];   //repub chart
+				var unrepunameArray = [];  //repub chart
+				var unpresdataArray =[];	 //presi chart
+				var unpresnameArray = [];  //presi chart
+				var unprespartyArray = []; //presi chart
+
 				candislist.each(function(item){
 					//get party name
 					arrayid = app.pidArray.indexOf(item.get("party_id"));
 					partyname = app.pnameArray[arrayid];
 					//get model data
 					candiname = item.get("name");
-					primedata = (1/item.get("primaryodds")*100).toFixed(0);
-					presidata = (1/item.get("presidencyodds")*100).toFixed(0)
+					primedata = 1/item.get("primaryodds")*100;
+					presidata = 1/item.get("presidencyodds")*100;
 					//presi arrays
-					prespartyArray.push(partyname);
-					presnameArray.push(candiname);
-					presdataArray.push(presidata);
+					unprespartyArray.push(partyname);
+					unpresnameArray.push(candiname);
+					unpresdataArray.push(presidata);
 					//primary data
 					if (partyname === "Democrats") {
 						demonameArray.push(candiname);
 						demodataArray.push(primedata);
 					} else {
-						repunameArray.push(candiname);
-						repudataArray.push(primedata);
+						unrepunameArray.push(candiname);
+						unrepudataArray.push(primedata);
 					};
 				});
 
-				//sort presidency arrays by data value
+				//chg data format for domo array
+				demodataArray = _.map(demodataArray, function(i){return i.toFixed(0)});
 
+				//sort republic
+				var i;
+				var x = unrepudataArray.length;
+				for(i=0;i<x;i++) {
+					var idx = unrepudataArray.indexOf(_.max(unrepudataArray));
+					repudataArray.push(unrepudataArray[idx].toFixed(0));
+					repunameArray.push(unrepunameArray[idx]);
+					unrepudataArray.splice(idx,1);
+					unrepunameArray.splice(idx,1);
+				};
+
+				//sort presidency arrays by data value
+				console.log("unsorted name: ", unpresnameArray);
+				console.log("unsorted value: ", unpresdataArray);
+				var x = unpresdataArray.length;
+				for(i=0;i<x;i++) {
+					var idx = unpresdataArray.indexOf(_.max(unpresdataArray));
+					presdataArray.push(unpresdataArray[idx].toFixed(0));
+					presnameArray.push(unpresnameArray[idx]);
+					prespartyArray.push(unprespartyArray[idx]);
+					unpresdataArray.splice(idx,1);
+					unpresnameArray.splice(idx,1);
+					unprespartyArray.splice(idx,1);
+				};
+				console.log("sorted name: ", presnameArray);
+				console.log("sorted value: ", presdataArray);
 				
 				////////////////////////////////////
 				//create party list using d3.js   //
@@ -63,7 +96,7 @@ app.CanListView = Backbone.View.extend({
 				d3.select(".page").html("");
 				d3.select(".chart").html("");
 
-				var width = 500; //shared var
+				var width = 600; //shared var
 				// var height = 250; //shared var
 
 				///////////////////////
@@ -101,7 +134,7 @@ app.CanListView = Backbone.View.extend({
 							.attr("height", 40)
 							.attr("fill", function(d) {return demoColor(d)})
 							.attr("y", function(d,i) {return i * 70})
-							.attr("x", 100)
+							.attr("x", 120)
 							.attr("width",0)
 							.transition()
 								.attr("width", function(d){ return demoWidthScale(d)})
@@ -124,7 +157,7 @@ app.CanListView = Backbone.View.extend({
 						.append("text")
 						.attr("class", "candi")
 						.text("")
-						.attr("x", function(d) { return demoWidthScale(d)+105})
+						.attr("x", function(d) { return demoWidthScale(d)+125})
 						.attr("y", function(d,i) {return i * 70+25;})
 						.transition()
 						.text(function(d) {return d+"%"})
@@ -167,7 +200,7 @@ app.CanListView = Backbone.View.extend({
 							.attr("height", 40)
 							.attr("fill", function(d) {return repuColor(d)})
 							.attr("y", function(d,i) {return i * 50})
-							.attr("x", 100)
+							.attr("x", 120)
 							.attr("width",0)
 							.transition()
 								.attr("width", function(d){ return repuWidthScale(d)})
@@ -190,7 +223,7 @@ app.CanListView = Backbone.View.extend({
 						.append("text")
 						.attr("class", "candi")
 						.text("")
-						.attr("x", function(d) {return repuWidthScale(d)+105})
+						.attr("x", function(d) {return repuWidthScale(d)+125})
 						.attr("y", function(d,i) {return i * 50+25;})
 						.transition()
 						.text(function(d) {return d+"%"})
@@ -236,7 +269,7 @@ app.CanListView = Backbone.View.extend({
 								};
 								})
 							.attr("y", function(d,i) {return i * 50})
-							.attr("x", 100)
+							.attr("x", 120)
 							.attr("width",0)
 							.transition()
 								.attr("width", function(d){ return presWidthScale(d)})
@@ -259,7 +292,7 @@ app.CanListView = Backbone.View.extend({
 						.append("text")
 						.attr("class", "candi")
 						.text("")
-						.attr("x", function(d) {return presWidthScale(d)+105})
+						.attr("x", function(d) {return presWidthScale(d)+125})
 						.attr("y", function(d,i) {return i * 50+25;})
 						.transition()
 						.text(function(d) {return d+"%"})
@@ -271,13 +304,13 @@ app.CanListView = Backbone.View.extend({
 						.enter()
 							.append("rect")
 							.attr("height", 30)
-							.attr("width", 90)
+							.attr("width", 120)
 							.attr("class","legend")
 							.style("fill", function(d){
 								return d
 							})
 							.attr("y",-50)
-							.attr("x", function(d,i) { return i*110+220})
+							.attr("x", function(d,i) { return i*130+250})
 							;
 				var prespartyLegendLabels = presCanvas.selectAll("text.legend")
 						.data(["Democrats","Republicans"])
@@ -285,7 +318,7 @@ app.CanListView = Backbone.View.extend({
 						.append("text")
 						.attr("class", "legend-name")
 						.text(function(d) {return d})
-						.attr("x", function(d,i) { return i*110+227})
+						.attr("x", function(d,i) { return i*130+270})
 						.attr("y", -30)
 						.style("fill", "white")
 						;
