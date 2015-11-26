@@ -6,10 +6,13 @@ class Service
 		client = Betfair::Client.new("X-Application" => ENV["CLIENTCODE"])
 		# # let's log in.
 		client.interactive_login(ENV["USERNAME"], ENV["PASSWORD"])
-		
+
 		# get book for party market
 		party_book = client.list_market_book("marketIds": ["1.116006120"])
 
+		Rails.logger.debug { ENV.value_at("CLIENTCODE", "USERNAME", "PASSWORD") }
+		Rails.logger.debug { party_book.inspect }
+		
 		# get runners form party_book
 		partyrunners = party_book[0]["runners"]
 
