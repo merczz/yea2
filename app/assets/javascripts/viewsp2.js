@@ -1,10 +1,138 @@
 //test.js
 // candidate tipping
 
+var biostring = `<div class="bio clinton">
+    <img src="http://www.abac.edu/wp-content/uploads/2013/01/democrat-logo.png" img class="logo">
+        <h2>Hillary Clinton</h2> 
+            <a href="https://www.hillaryclinton.com/"><img src="http://i.imgur.com/VVus0at.jpg?1"></a>
+         <a href="https://en.wikipedia.org/wiki/Hillary_Clinton">Wikipedia Page</a> 
+</div>
+
+<div class="bio sanders">
+    <img src="http://www.abac.edu/wp-content/uploads/2013/01/democrat-logo.png" img class="logo"> 
+        <h2>Bernie Sanders</h2>
+            <a href="https://secure.berniesanders.com/"><img src="http://i.imgur.com/gNamezs.jpg?1"></a>    
+        <a href="https://en.wikipedia.org/wiki/Bernie_Sanders">Wikipedia Page</a> <br>
+</div>
+
+
+<div class="bio rubio">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png" img class="logo">
+        <h2>Marco Rubio</h2>
+             <a href=""https://marcorubio.com/""><img src="http://i.imgur.com/aK8zEgb.jpg?1"></a>
+        <a href="https://en.wikipedia.org/wiki/Marco_Rubio">Wikipedia Page</a> <br>
+</div>
+
+
+<div class="bio trump">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png" img class="logo">
+        <h2>Donald Trump</h2>
+            <a href="https://www.donaldjtrump.com/"><img src="http://i.imgur.com/dfE8qHK.jpg?1"></a>    
+        <a href="https://en.wikipedia.org/wiki/Donald_Trump">Wikipedia Page</a> <br>
+</div>
+
+
+<div class="bio bush">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png" img class="logo">
+        <h2>Jeb Bush</h2>
+            <a href="https://jeb2016.com/?lang=en"><img src="https://qph.is.quoracdn.net/main-thumb-t-33103-200-byvvznwiyapvmefbdliexfitsxdvjpqf.jpeg"></a>
+        <a href="https://en.wikipedia.org/wiki/Jeb_Bush">Wikipedia Page</a> <br>
+</div>
+
+<div class="bio carson">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png" img class="logo"> 
+        <h2>Ben Carson</h2>
+            <a href="https://www.bencarson.com/"><img src="http://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/68/2015/11/06064014/ben-carson-oct-2015-billboard-650-200x200.jpg"></a>
+        <a href="https://en.wikipedia.org/wiki/Ben_Carson">Wikipedia Page</a> <br>
+</div>
+
+
+<div class="bio christie">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png" img class="logo"> 
+        <h2>Chris Christie</h2>
+            <a href="https://www.chrischristie.com/"><img src="http://rs122.pbsrc.com/albums/o244/race42008/ChrisChristieR412.jpg~c200"></a>    
+        <a href="https://en.wikipedia.org/wiki/Chris_Christie">Wikipedia Page</a> <br>
+</div>
+
+<div class="bio cruz">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png" img class="logo"> 
+        <h2>Ted Cruz</h2>
+            <a href="https://www.tedcruz.org/"><img src="http://dailysignal.com/wp-content/uploads/Cruz-Headshot-2-200x200.jpg"></a>    
+        <a href="https://en.wikipedia.org/wiki/Ted_Cruz">Wikipedia Page</a> <br>
+</div>`
+
+
+
 var app = app || {};
 
 app.CanListView = Backbone.View.extend({
 	el: '.page',
+
+	events: {
+		// "click #candidate-submit",
+		"click .dem0": "dem0click",
+		"click .dem1": "dem1click",
+		"click .pres0": "pres0click",
+		"click .pres1": "pres1click",
+		"click .pres2": "pres2click",
+		"click .pres3": "pres3click",
+		"click .pres4": "pres4click",
+		"click .pres5": "pres5click",
+		"click .pres6": "pres6click",
+		"click .pres7": "pres7click",
+	},
+
+	dem0click: function(){
+		 $(".bio").hide();
+		 $(".clinton").show();
+		// alert("hhh!");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	pres: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+	dem1click: function(){
+		$(".bio").hide();
+		$(".sanders").show();
+		// alert("dem2");
+	},
+
 
 	render: function() {
 		console.log("start render view2");
@@ -69,9 +197,12 @@ app.CanListView = Backbone.View.extend({
 				///////////////////////
 				/// chart 1 demo primaries
 				//////////////////////
-
+				$(".page").append('<div class="bigdiv"><div class="quat q1"></div><div class="quat q2"></div><div class="quat q3"></div><div class="quat q4"></div></div>');
+				$(".q4").append(biostring);
+				$(".bio").hide();
+				$(".trump").show();
 				//heading		
-				d3.select(".chart").append("h2").text("Democratic Primaries");	
+				d3.select(".q1").append("h2").text("Democratic Primaries");	
 				console.log("demonamearray:  ",demonameArray);
 				console.log("demodataarray: ", demodataArray);
 				//chart
@@ -91,7 +222,7 @@ app.CanListView = Backbone.View.extend({
 							.domain([1,70])
 							.range(["firebrick","navy"]) ;
 
-				var demoCanvas = d3.select('.chart')
+				var demoCanvas = d3.select('.q1')
 						.append("svg")
 						.attr("class", "demo-svg")
 						.attr("width", width)
@@ -103,6 +234,8 @@ app.CanListView = Backbone.View.extend({
 						.data(demodataArray)
 						.enter()
 							.append("rect")
+							// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+							.attr("class", function(d,i) {return "dem"+i;})
 							.attr("height", 50)
 							.attr("fill", function(d) {return demoColor(d)})
 							.attr("y", function(d,i) {return i * 80})
@@ -159,7 +292,7 @@ app.CanListView = Backbone.View.extend({
 				//////////////////////
 
 				//heading		
-				d3.select(".chart").append("h2").text("Who will be the President?");	
+				d3.select(".q3").append("h2").text("Who will be the President?");	
 				console.log("presnamearray:  ",presnameArray);
 				console.log("presdataarray: ", presdataArray);
 				console.log("prespartyarray: ", prespartyArray)
@@ -175,7 +308,7 @@ app.CanListView = Backbone.View.extend({
 							.ticks(2)
 							.scale(presWidthScale);
 
-				var presCanvas = d3.select('.chart')
+				var presCanvas = d3.select('.q3')
 						.append("svg")
 						.attr("class", "pres-svg")
 						.attr("width", width)
@@ -188,6 +321,7 @@ app.CanListView = Backbone.View.extend({
 						.data(presdataArray)
 						.enter()
 							.append("rect")
+							.attr("class", function(d,i) {return "pres"+i;})
 							.attr("height", 40)
 							.style("fill", function(d,i) {
 								if(prespartyArray[i] == "Democrats") {
@@ -243,8 +377,8 @@ app.CanListView = Backbone.View.extend({
 					.attr("class", "axis")
 					.call(presAxis);
 
-
 			}
 		});
+
 	}
 });

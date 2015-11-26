@@ -3,9 +3,9 @@ class Service
 		# login to betfair
 		require 'betfair'
 		# # create a client with app code
-		client = Betfair::Client.new("X-Application" => "QclZiGscuNBIPhCB")
+		client = Betfair::Client.new("X-Application" => ENV["CLIENTCODE"])
 		# # let's log in.
-		client.interactive_login("lucena1", "bubbatoto2")
+		client.interactive_login(ENV["USERNAME"], ENV["PASSWORD"])
 		
 		# get book for party market
 		party_book = client.list_market_book("marketIds": ["1.116006120"])

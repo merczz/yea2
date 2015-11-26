@@ -45,3 +45,5 @@ end
 
 gem 'betfair-ng'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+

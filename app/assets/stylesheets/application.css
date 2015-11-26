@@ -156,3 +156,44 @@ rect:nth-child(even) {
 rect:hover {
   fill: red;
 }
+
+
+
+.bigdiv {
+    width: 1000px;
+    height: 1000px;
+}
+
+.quat {
+    width: 500px;
+    height: 500px;
+    outline: 1px solid;
+    float: left;
+}
+
+
+.clinton, .sanders, .rubio, .trump, .bush, .carson, .christie, .cruz {
+    height: 370px;
+    width: 250px;
+    display: inline-block;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    font-size: 13px;
+    font-family: sans-serif;
+    
+}
+
+h1 {
+    text-align: center;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+}
+
+
+img {
+    border-radius: 10px;
+}
