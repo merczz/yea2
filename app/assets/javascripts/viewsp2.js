@@ -1,4 +1,4 @@
-//test.js
+//viewsp2.js
 // candidate tipping
 
 var app = app || {};
@@ -64,7 +64,7 @@ app.CanListView = Backbone.View.extend({
 				d3.select(".chart").html("");
 
 				var width = 500; //shared var
-				var height = 250; //shared var
+				// var height = 250; //shared var
 
 				///////////////////////
 				/// chart 1 demo primaries
@@ -79,12 +79,7 @@ app.CanListView = Backbone.View.extend({
 				//scale demo only
 				var demoWidthScale = d3.scale.linear()
 								.domain([0,110])
-								.range([0, width]); //max width
-
-				// create axis shared element
-				var demoAxis = d3.svg.axis()
-							.ticks(2)
-							.scale(demoWidthScale);
+								.range([0, width-140]); //max width
 
 				//color scale demo only
 				var demoColor = d3.scale.linear()
@@ -95,7 +90,7 @@ app.CanListView = Backbone.View.extend({
 						.append("svg")
 						.attr("class", "demo-svg")
 						.attr("width", width)
-						.attr("height", height)
+						.attr("height", 180)
 						.append("g")
 						.attr("transform", "translate(25,40)");
 
@@ -103,10 +98,10 @@ app.CanListView = Backbone.View.extend({
 						.data(demodataArray)
 						.enter()
 							.append("rect")
-							.attr("height", 50)
+							.attr("height", 40)
 							.attr("fill", function(d) {return demoColor(d)})
-							.attr("y", function(d,i) {return i * 80})
-							.attr("x", 0)
+							.attr("y", function(d,i) {return i * 70})
+							.attr("x", 100)
 							.attr("width",0)
 							.transition()
 								.attr("width", function(d){ return demoWidthScale(d)})
@@ -117,41 +112,90 @@ app.CanListView = Backbone.View.extend({
 						.data(demonameArray)
 						.enter()
 						.append("text")
-						.attr("class", "demo-name")
+						.attr("class", "candi")
 						.text(function(d) {return d})
-						.attr("x", 5)
-						.attr("y", function(d,i) {return i * 80+30})
-						.style("fill", "white")
+						.attr("x", -5)
+						.attr("y", function(d,i) {return i * 70+25})
 						;
 
 				var demolabelsVal = demoCanvas.selectAll("text.value")
 						.data(demodataArray)
 						.enter()
 						.append("text")
-						.attr("class", "demo-value")
+						.attr("class", "candi")
 						.text("")
-						.attr("x", function(d) {
-							if(d<40){
-								return demoWidthScale(d)+150;
-							} else {
-								return demoWidthScale(d)+5;
-							};
-						})
-						.attr("y", function(d,i) {return i * 80+30;})
+						.attr("x", function(d) { return demoWidthScale(d)+105})
+						.attr("y", function(d,i) {return i * 70+25;})
 						.transition()
 						.text(function(d) {return d+"%"})
 						.delay(1500)
 						;
 
-				demoCanvas.append("g")
-					.attr("transform", "translate(0,140)")
-					.attr("class", "axis")
-					.call(demoAxis);
 
 				///////////////////////
 				/// chart 2 republican primaries
 				//////////////////////
 
+				//heading		
+				d3.select(".chart").append("h2").text("Republicans Primaries");	
+				console.log("repunamearray:  ",repunameArray);
+				console.log("repudataarray: ", repudataArray);
+				//chart
+
+				//scale demo only
+				var repuWidthScale = d3.scale.linear()
+								.domain([0,50])
+								.range([0, width-140]); //max width
+
+				//color scale demo only
+				var repuColor = d3.scale.linear()
+							.domain([1,40])
+							.range(["crimson","navy"]) ;
+
+				var repuCanvas = d3.select('.chart')
+						.append("svg")
+						.attr("class", "repu-svg")
+						.attr("width", width)
+						.attr("height", 360)
+						.append("g")
+						.attr("transform", "translate(25,40)");
+
+				var repuBars = repuCanvas.selectAll("rect")
+						.data(repudataArray)
+						.enter()
+							.append("rect")
+							.attr("height", 40)
+							.attr("fill", function(d) {return repuColor(d)})
+							.attr("y", function(d,i) {return i * 50})
+							.attr("x", 100)
+							.attr("width",0)
+							.transition()
+								.attr("width", function(d){ return repuWidthScale(d)})
+								.duration(1000)
+								.delay(500);
+
+				var repuLabels = repuCanvas.selectAll("text.name")
+						.data(repunameArray)
+						.enter()
+						.append("text")
+						.attr("class", "candi")
+						.text(function(d) {return d})
+						.attr("x", -5)
+						.attr("y", function(d,i) {return i * 50+25})
+						;
+
+				var repulabelsVal = repuCanvas.selectAll("text.value")
+						.data(repudataArray)
+						.enter()
+						.append("text")
+						.attr("class", "candi")
+						.text("")
+						.attr("x", function(d) {return repuWidthScale(d)+105})
+						.attr("y", function(d,i) {return i * 50+25;})
+						.transition()
+						.text(function(d) {return d+"%"})
+						.delay(1500)
+						;
 
 
 				///////////////////////
