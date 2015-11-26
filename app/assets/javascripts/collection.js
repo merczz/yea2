@@ -4,7 +4,7 @@ var app = app || {};
 
 app.CandidatesList = Backbone.Collection.extend({
   url: '/candidates',
-  model: app.Candidate
+  model: app.Candidate,
 });
 
 app.PartiesList = Backbone.Collection.extend({

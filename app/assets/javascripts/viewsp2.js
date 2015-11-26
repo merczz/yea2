@@ -51,6 +51,9 @@ app.CanListView = Backbone.View.extend({
 						repudataArray.push(primedata);
 					};
 				});
+
+				//sort presidency arrays by data value
+
 				
 				////////////////////////////////////
 				//create party list using d3.js   //
@@ -154,6 +157,91 @@ app.CanListView = Backbone.View.extend({
 				///////////////////////
 				/// chart 3 presidency
 				//////////////////////
+
+				//heading		
+				d3.select(".chart").append("h2").text("Who will be the President?");	
+				console.log("presnamearray:  ",presnameArray);
+				console.log("presdataarray: ", presdataArray);
+				console.log("prespartyarray: ", prespartyArray)
+				//chart
+
+				//scale
+				var presWidthScale = d3.scale.linear()
+								.domain([0,70])
+								.range([0, width]); //max width
+
+				// create axis
+				var presAxis = d3.svg.axis()
+							.ticks(2)
+							.scale(presWidthScale);
+
+				var presCanvas = d3.select('.chart')
+						.append("svg")
+						.attr("class", "pres-svg")
+						.attr("width", width)
+						.attr("height", 550)  //increase height
+						.append("g")
+						.attr("transform", "translate(25,60)");
+
+
+				var presBars = presCanvas.selectAll("rect.bar")
+						.data(presdataArray)
+						.enter()
+							.append("rect")
+							.attr("height", 40)
+							.style("fill", function(d,i) {
+								if(prespartyArray[i] == "Democrats") {
+									return "navy"
+								} else {
+									return "firebrick"
+								};
+								})
+							.attr("y", function(d,i) {return i * 50})
+							.attr("x", 0)
+							.attr("width",0)
+							.transition()
+								.attr("width", function(d){ return presWidthScale(d)})
+								.duration(1000)
+								.delay(500);
+
+				var presLabels = presCanvas.selectAll("text.name")
+						.data(presnameArray)
+						.enter()
+						.append("text")
+						.attr("class", "pres-name")
+						.text(function(d,i) {return d + "  " + presdataArray[i] + "%"})
+						.attr("x", 5)
+						.attr("y", function(d,i) {return i * 50+25})
+						.style("fill", "white")
+						;
+
+				var prespartyLegend = presCanvas.selectAll("rect.legend")
+						.data(["navy","firebrick"])
+						.enter()
+							.append("rect")
+							.attr("height", 30)
+							.attr("width", 90)
+							.attr("class","legend")
+							.style("fill", function(d){
+								return d
+							})
+							.attr("y",-50)
+							.attr("x", function(d,i) { return i*110+220})
+							;
+				var prespartyLegendLabels = presCanvas.selectAll("text.legend")
+						.data(["Democrats","Republicans"])
+						.enter()
+						.append("text")
+						.attr("class", "legend-name")
+						.text(function(d) {return d})
+						.attr("x", function(d,i) { return i*110+227})
+						.attr("y", -30)
+						.style("fill", "white")
+						;
+				presCanvas.append("g")
+					.attr("transform", "translate(0,420)")
+					.attr("class", "axis")
+					.call(presAxis);
 
 
 			}

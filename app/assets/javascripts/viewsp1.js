@@ -134,7 +134,7 @@ app.PartiesListView = Backbone.View.extend({
 						.delay(1500)
 						;
 				canvas.append("g")
-					.attr("transform", "translate(0,140)")
+					.attr("transform", "translate(0,160)")
 					.attr("class", "axis")
 					.call(axis)
 
