@@ -212,18 +212,13 @@ app.CanListView = Backbone.View.extend({
 				//scale
 				var presWidthScale = d3.scale.linear()
 								.domain([0,70])
-								.range([0, width]); //max width
-
-				// create axis
-				var presAxis = d3.svg.axis()
-							.ticks(2)
-							.scale(presWidthScale);
+								.range([0, width-140]); //max width
 
 				var presCanvas = d3.select('.chart')
 						.append("svg")
 						.attr("class", "pres-svg")
 						.attr("width", width)
-						.attr("height", 550)  //increase height
+						.attr("height", 500)  //increase height
 						.append("g")
 						.attr("transform", "translate(25,60)");
 
@@ -241,7 +236,7 @@ app.CanListView = Backbone.View.extend({
 								};
 								})
 							.attr("y", function(d,i) {return i * 50})
-							.attr("x", 0)
+							.attr("x", 100)
 							.attr("width",0)
 							.transition()
 								.attr("width", function(d){ return presWidthScale(d)})
@@ -252,11 +247,23 @@ app.CanListView = Backbone.View.extend({
 						.data(presnameArray)
 						.enter()
 						.append("text")
-						.attr("class", "pres-name")
-						.text(function(d,i) {return d + "  " + presdataArray[i] + "%"})
-						.attr("x", 5)
+						.attr("class", "candi")
+						.text(function(d) {return d})
+						.attr("x", -5)
 						.attr("y", function(d,i) {return i * 50+25})
-						.style("fill", "white")
+						;
+
+				var preslabelsVal = presCanvas.selectAll("text.value")
+						.data(presdataArray)
+						.enter()
+						.append("text")
+						.attr("class", "candi")
+						.text("")
+						.attr("x", function(d) {return presWidthScale(d)+105})
+						.attr("y", function(d,i) {return i * 50+25;})
+						.transition()
+						.text(function(d) {return d+"%"})
+						.delay(1500)
 						;
 
 				var prespartyLegend = presCanvas.selectAll("rect.legend")
@@ -282,10 +289,6 @@ app.CanListView = Backbone.View.extend({
 						.attr("y", -30)
 						.style("fill", "white")
 						;
-				presCanvas.append("g")
-					.attr("transform", "translate(0,420)")
-					.attr("class", "axis")
-					.call(presAxis);
 
 
 			}
