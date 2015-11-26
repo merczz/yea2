@@ -43,6 +43,12 @@ body{
 	background-size: cover;
 }
 
+p{
+	font-size: 1.2em;
+	margin: 1.9em;
+	text-align: left;
+}
+
 h1{
 	color: navy;
 	font-size: 3em;
@@ -59,6 +65,10 @@ h2 {
 	margin-top: 20px;
 	margin-bottom: 50px;
 	margin-left: 20px;
+}
+
+.firstheading{
+	text-align: center;
 }
 
 .party-table {
@@ -85,6 +95,33 @@ td {
 	font-size: 2em;
 	margin: 20px;
 	padding: 10px;
+
+}
+
+#candidate-submit:hover {
+	background-color: #3136FF;
+	border-color: rgba(0,0,0,0.5);
+}
+/*
+#candidate-submit:active {
+	background-color: #7D81FF;
+	border-color: rgba(0,0,0,0.9);
+	}
+*/
+#candidate-submit {
+    display: inline-block;
+    margin: 1.2em;
+    color: white;
+    background-color: #4E51A8 ;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-bottom-width: 3px;
 
 }
 
@@ -146,11 +183,11 @@ rect {
 }
 
 rect:nth-child(odd) {
-  fill: firebrick;
+  fill: navy;
 }
 
 rect:nth-child(even) {
-  fill: navy;
+  fill: firebrick;
 }
 
 rect:hover {
@@ -160,12 +197,12 @@ rect:hover {
 
 
 .bigdiv {
-    width: 1100px;
+    width: 1010px;
     height: 1000px;
 }
 
 .quat {
-    width: 550px;
+    width: 505px;
     height: 500px;
     /*outline: 1px solid;*/
     float: left;

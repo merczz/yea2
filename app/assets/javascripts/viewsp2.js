@@ -223,7 +223,8 @@ app.CanListView = Backbone.View.extend({
 				//////////////////////
 
 				//heading		
-				d3.select(".q3").append("h2").text("Democratic Primaries");	
+				// d3.select(".q3").append("h2").text("Democratic Primaries");	
+				  d3.select(".q3").append("h2").text("         ");
 				console.log("demonamearray:  ",demonameArray);
 				console.log("demodataarray: ", demodataArray);
 				//chart
@@ -286,13 +287,24 @@ app.CanListView = Backbone.View.extend({
 						.delay(1500)
 						;
 
+				var demolabelsVal = demoCanvas.selectAll("text.value")
+						.data(["Who will win the Democrat Primarys?"])
+						.enter()
+						.append("text")
+						.attr("class", "chart_title")
+						.text(function(d) {return d})
+						.attr("x", function(d,i) { return i*130+0}) // { return i*130+200} { return i*130+270}
+						.attr("y", -20)
+						.style("fill", "b", "black")
+						;
+
 
 				///////////////////////
 				/// chart 2 republican primaries
 				//////////////////////
 
 				//heading		
-				d3.select(".q4").append("h2").text("Republicans Primaries");	
+				 d3.select(".q4").append("h2").text("        ");	
 				console.log("repunamearray:  ",repunameArray);
 				console.log("repudataarray: ", repudataArray);
 				//chart
@@ -354,13 +366,25 @@ app.CanListView = Backbone.View.extend({
 						.delay(1500)
 						;
 
+				var repulabelsVal = repuCanvas.selectAll("text.value")
+						.data(["Who will win the Republican Primarys?"])
+						.enter()
+						.append("text")
+						.attr("class", "chart_title")
+						.text(function(d) {return d})
+						.attr("x", function(d,i) { return i*130+0}) // { return i*130+200} { return i*130+270}
+						.attr("y", -20)
+						.style("fill", "b", "black")
+						;
+
 
 				///////////////////////
 				/// chart 3 presidency
 				//////////////////////
 
 				//heading		
-				// d3.select(".q3").append("h2").text("Who will be the President?");	
+				// d3.select(".q3").append("h2").text("Who will be the President?");
+				 // d3.select(".q3").append("h2").text("     fff   ");		
 				console.log("presnamearray:  ",presnameArray);
 				console.log("presdataarray: ", presdataArray);
 				console.log("prespartyarray: ", prespartyArray)

@@ -47,7 +47,13 @@ app.PartiesListView = Backbone.View.extend({
 				////////////////////////////////////
 				//create party list using backbone//
 				////////////////////////////////////
-				var content = "<h2>Probability to Win</h2><table class='party-table'>";
+				var content = "	<p >This application uses data from the Betfair "+
+				"API to predict the likelihood of outcomes in the U.S Presidential " +
+				"Election. Betfair is an internet betting exchange that provides an " +
+				"in-depth analysis of various markets. Historically, betting odds are " +
+				"an accurate source in predicting the outcome of an event.</p>";
+
+				content = content + "<h2 class='firstheading'>Partys chance to win general election</h2><table class='party-table'>";
 				for (var i=0; i<dataArray.length; i++){
 					content = content + "<tr><td>" + nameArray[i] + 
 						"</td><td> " + dataArray[i] + "%</td><td>" + 
@@ -75,7 +81,7 @@ app.PartiesListView = Backbone.View.extend({
 				//color scale
 				var color = d3.scale.linear()
 							.domain([d3.min(dataArray),d3.max(dataArray)])
-							.range(["firebrick","navy"]) ;
+							.range(["firebrick","yellow"]) ; //["firebrick","navy"]
 
 				// create axis
 				var axis = d3.svg.axis()
