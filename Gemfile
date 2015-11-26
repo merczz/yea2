@@ -47,3 +47,8 @@ gem 'betfair-ng'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
+gem 'rails_12factor', group: :production
+
+ruby "2.2.3"
+
+
