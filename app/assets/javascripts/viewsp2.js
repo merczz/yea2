@@ -158,5 +158,5 @@ app.CanListView = Backbone.View.extend({
 
 			}
 		});
-	}
-});
+// 	}
+// });
