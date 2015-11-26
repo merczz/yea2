@@ -140,6 +140,7 @@ app.CanListView = Backbone.View.extend({
 						.text(function(d) {return d+"%"})
 						.delay(1500)
 						;
+						
 				demoCanvas.append("g")
 					.attr("transform", "translate(0,140)")
 					.attr("class", "axis")
@@ -158,5 +159,5 @@ app.CanListView = Backbone.View.extend({
 
 			}
 		});
-// 	}
-// });
+	}
+});
