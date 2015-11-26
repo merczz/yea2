@@ -10,9 +10,6 @@ class Service
 		# get book for party market
 		party_book = client.list_market_book("marketIds": ["1.116006120"])
 
-		Rails.logger.debug { ENV.value_at("CLIENTCODE", "USERNAME", "PASSWORD") }
-		Rails.logger.debug { party_book.inspect }
-		
 		# get runners form party_book
 		partyrunners = party_book[0]["runners"]
 
