@@ -288,7 +288,7 @@ app.CanListView = Backbone.View.extend({
 						;
 
 				var demolabelsVal = demoCanvas.selectAll("text.value")
-						.data(["Who will win the Democrat Primarys?"])
+						.data(["Who will win the Democrat Primaries?"])
 						.enter()
 						.append("text")
 						.attr("class", "chart_title")
@@ -367,7 +367,7 @@ app.CanListView = Backbone.View.extend({
 						;
 
 				var repulabelsVal = repuCanvas.selectAll("text.value")
-						.data(["Who will win the Republican Primarys?"])
+						.data(["Who will win the Republican Primaries?"])
 						.enter()
 						.append("text")
 						.attr("class", "chart_title")
