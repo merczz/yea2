@@ -24,7 +24,6 @@ app.PartiesListView = Backbone.View.extend({
 		app.plist.fetch({
 			success: function(){
 				console.log("plist fetch success");
-				// console.log("partieslist: ", partieslist.models);
 				//clean up data
 				// var dataArray = partieslist.pluck("odds");
 				// var nameArray = partieslist.pluck("name");
@@ -131,7 +130,7 @@ app.PartiesListView = Backbone.View.extend({
 						.append("text")
 						.attr("class", "party-value")
 						.text("")
-						.attr("x", function(d) {return widthScale(d)+5})
+						.attr("x", function(d) {return widthScale(d)-50})
 						.attr("y", function(d,i) {return i * 80+30;})
 						// .style("fill", "dimgray")
 						// .style("font-size", "16px")

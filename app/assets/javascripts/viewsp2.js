@@ -1,4 +1,4 @@
-//test.js
+//viewsp2.js
 // candidate tipping
 
 
@@ -117,8 +117,8 @@ app.CanListView = Backbone.View.extend({
 
 
 
-// start render ===============================================================
-// ============================================================================
+	// start render ===============================================================
+	// ============================================================================
 
 	render: function() {
 		console.log("start render view2");
@@ -215,7 +215,9 @@ app.CanListView = Backbone.View.extend({
 				$(".bio").hide();
 				$(".info").show();
 
+
 				var width = 500; //shared var =============================
+
 				// var height = 250; //shared var
 
 				///////////////////////
@@ -251,7 +253,9 @@ app.CanListView = Backbone.View.extend({
 						.data(demodataArray)
 						.enter()
 							.append("rect")
+
 							.attr("class", function(d,i) {return "dem"+i;})
+
 							.attr("height", 40)
 							.attr("fill", function(d) {return demoColor(d)})
 							.attr("y", function(d,i) {return i * 70})
@@ -304,7 +308,9 @@ app.CanListView = Backbone.View.extend({
 				//////////////////////
 
 				//heading		
+
 				 d3.select(".q4").append("h2").text("        ");	
+
 				console.log("repunamearray:  ",repunameArray);
 				console.log("repudataarray: ", repudataArray);
 				//chart
@@ -331,6 +337,7 @@ app.CanListView = Backbone.View.extend({
 						.data(repudataArray)
 						.enter()
 							.append("rect")
+
 							.attr("class", function(d,i) {return "rep"+i;})
 							.attr("height", 40)
 							.attr("fill", function(d) {return repuColor(d)})
@@ -348,6 +355,7 @@ app.CanListView = Backbone.View.extend({
 						.append("text")
 						.attr("class", function(d,i) {return "rep"+i;})
 						// .attr("class", "candi")
+
 						.text(function(d) {return d})
 						.attr("x", -5)
 						.attr("y", function(d,i) {return i * 50+25})
@@ -378,6 +386,7 @@ app.CanListView = Backbone.View.extend({
 						;
 
 
+
 				///////////////////////
 				/// chart 3 presidency
 				//////////////////////
@@ -395,7 +404,9 @@ app.CanListView = Backbone.View.extend({
 								.domain([0,70])
 								.range([0, width-140]); //max width
 
+
 				var presCanvas = d3.select('.q1')
+
 						.append("svg")
 						.attr("class", "pres-svg")
 						.attr("width", width)
@@ -429,8 +440,10 @@ app.CanListView = Backbone.View.extend({
 						.data(presnameArray)
 						.enter()
 						.append("text")
+
 						.attr("class", function(d,i) {return "pres"+i;})
 						// .attr("class", "candi")
+
 						.text(function(d) {return d})
 						.attr("x", -5)
 						.attr("y", function(d,i) {return i * 50+25})
@@ -461,6 +474,7 @@ app.CanListView = Backbone.View.extend({
 							})
 							.attr("y",-50)
 							.attr("x", function(d,i) { return i*130+170}) // { return i*130+250}
+
 							;
 				var prespartyLegendLabels = presCanvas.selectAll("text.legend")
 						.data(["Democrats","Republicans"])
@@ -483,6 +497,7 @@ app.CanListView = Backbone.View.extend({
 						.attr("y", -30)
 						.style("fill", "b", "black")
 						;
+
 
 
 			}

@@ -4,7 +4,9 @@ var app = app || {};
 
 app.Router = Backbone.Router.extend({
   routes: {
-    '': function(){ console.log("load index page");
-    } 
-  },
+    '': function(){ console.log("load index page");},
+  }
+
 });
+
+
